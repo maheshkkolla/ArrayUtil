@@ -22,7 +22,14 @@ ArrayUtil create(int typeSize, int length) {
 }
 
 ArrayUtil resize(ArrayUtil util, int length) {
-
+	int i;
+	ArrayUtil array;
+	array = create(util.typeSize, length);
+	for (i = 0; i < length; ++i){
+		if(i < util.length) ((int *)(array.base))[i] = ((int *)(util.base))[i];
+		else ((int *)(array.base))[i] = 0;
+	} 
+	return array;
 }
 
 
