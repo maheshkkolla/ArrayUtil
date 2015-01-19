@@ -41,32 +41,32 @@ void test_areEqual_returns_1_if_both_arrays_are_not_intialized(){
 
 void test_resize_returns_new_Array_util_with_new_length_by_putting_0s_in_extra_spaces(){
 	ArrayUtil a = create(4, 2);
-	ArrayUtil c = create(4, 4);
-	ArrayUtil b;
+	ArrayUtil b = create(4, 4);
+	ArrayUtil c;
 	int *aBase = (int *)(a.base);
-	int *cBase = (int *)(c.base);
+	int *bBase = (int *)(b.base);
 	aBase[0] = 1;
 	aBase[1] = 1;
-	cBase[0] = 1;
-	cBase[1] = 1;
-	cBase[2] = 0;
-	cBase[3] = 0;
-	b = resize(a, 4);
-	assertEqual(areEqual(b,c),1);	
+	bBase[0] = 1;
+	bBase[1] = 1;
+	bBase[2] = 0;
+	bBase[3] = 0;
+	c = resize(a, 4);
+	assertEqual(areEqual(c,b),1);	
 }
 
 void test_resize_returns_new_Array_util_with_new_length_by_deleting_extra_values(){
 	ArrayUtil a = create(4, 4);
-	ArrayUtil c = create(4, 2);
-	ArrayUtil b;
+	ArrayUtil b = create(4, 2);
+	ArrayUtil c;
 	int *aBase = (int *)(a.base);
-	int *cBase = (int *)(c.base);
+	int *bBase = (int *)(b.base);
 	aBase[0] = 0;
 	aBase[1] = 1;
 	aBase[2] = 2;
 	aBase[3] = 3;
-	cBase[0] = 0;
-	cBase[1] = 1;
-	b = resize(a, 2);
-	assertEqual(areEqual(b,c),1);	
+	bBase[0] = 0;
+	bBase[1] = 1;
+	c = resize(a, 2);
+	assertEqual(areEqual(c,b),1);	
 }
