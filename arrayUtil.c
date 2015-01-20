@@ -52,8 +52,6 @@ int findIndex(ArrayUtil util, void *element){
 
 void dispose(ArrayUtil util) {
 	free(util.base);
-	util.length = 0;
-	util.typeSize = 0;
 }
 
 

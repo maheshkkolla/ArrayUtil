@@ -105,4 +105,3 @@ void test_findIndex_returns_index_of_the_int_element_where_it_presents(){
 	index = findIndex(a, &element);
 	assertEqual(index, 4);
 }
-
