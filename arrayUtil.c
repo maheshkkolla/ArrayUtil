@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "arrayUtil.h"
 #include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
 int areEqual(ArrayUtil a, ArrayUtil b) {
 	int i;
@@ -31,5 +33,28 @@ ArrayUtil resize(ArrayUtil util, int length) {
 	} 
 	return array;
 }
+
+int findIndex(ArrayUtil util, void *element){
+	char *utilArray = (char *)(util.base);
+	char *item = (char *)element;
+	int count = util.length * util.typeSize;
+	int subCount = util.typeSize * sizeof(char);
+	int i, j;
+	for (i = 0, j = 0; i < count; ++i) {
+		if(j>0 && utilArray[i] != item[j]) j=0;
+		if(utilArray[i] == item[j]){
+			j++;
+		}
+		if(j==subCount) return(i/util.typeSize);
+	}
+	return -1;
+}
+
+void dispose(ArrayUtil util) {
+	free(util.base);
+	util.length = 0;
+	util.typeSize = 0;
+}
+
 
 

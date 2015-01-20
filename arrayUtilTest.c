@@ -15,6 +15,8 @@ void test_areEqual_returns_1_if_both_are_equal(){
 	bBase[1] = 2;
 	equal = areEqual(a, b);
 	assertEqual(equal, 1);
+	free(aBase);
+	free(bBase);
 } 
 
 void test_areEqual_returns_0_if_both_are_not_equal(){
@@ -29,6 +31,8 @@ void test_areEqual_returns_0_if_both_are_not_equal(){
 	bBase[1] = 2;						
 	equal = areEqual(a, b);
 	assertEqual(equal, 0);
+	free(aBase);
+	free(bBase);
 } 
 
 void test_areEqual_returns_1_if_both_arrays_are_not_intialized(){
@@ -52,7 +56,9 @@ void test_resize_returns_new_Array_util_with_new_length_by_putting_0s_in_extra_s
 	bBase[2] = 0;
 	bBase[3] = 0;
 	c = resize(a, 4);
-	assertEqual(areEqual(c,b),1);	
+	assertEqual(areEqual(c,b),1);
+	free(aBase);
+	free(bBase);	
 }
 
 void test_resize_returns_new_Array_util_with_new_length_by_deleting_extra_values(){
@@ -68,5 +74,35 @@ void test_resize_returns_new_Array_util_with_new_length_by_deleting_extra_values
 	bBase[0] = 0;
 	bBase[1] = 1;
 	c = resize(a, 2);
-	assertEqual(areEqual(c,b),1);	
+	assertEqual(areEqual(c,b),1);
+	free(aBase);
+	free(bBase);	
 }
+
+void test_findIndex_returns_index_of_the_element_where_it_presents(){
+	int index;
+	char element = 'h';
+	ArrayUtil a = create(sizeof(char), 4);
+	char *aBase = (char *)(a.base);
+	aBase[0] = 'm';
+	aBase[1] = 'a';
+	aBase[2] = 'h';
+	aBase[3] = 'e';
+	index = findIndex(a, &element);
+	assertEqual(index, 2);
+}
+
+void test_findIndex_returns_index_of_the_int_element_where_it_presents(){
+	int index;
+	int element = 5;
+	ArrayUtil a = create(sizeof(int), 5);
+	int *aBase = (int *)(a.base);
+	aBase[0] = 1;
+	aBase[1] = 1;
+	aBase[2] = 2;
+	aBase[3] = 4;
+	aBase[4] = 5;
+	index = findIndex(a, &element);
+	assertEqual(index, 4);
+}
+
