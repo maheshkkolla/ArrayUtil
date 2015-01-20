@@ -54,5 +54,15 @@ void dispose(ArrayUtil util) {
 	free(util.base);
 }
 
+void *findFirst(ArrayUtil util, MatchFunc *match, void *hint) {
+	char *array = (char *)util.base;
+	int i, count = util.length * util.typeSize;
+	for (i = 0; i < count; i=i+util.typeSize) {
+		if(match(hint,array+i)) return(array+i);
+	}
+	return NULL;
+}
+
+
 
 

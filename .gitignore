@@ -1,5 +1,4 @@
 *.o
 *.exe
-expr_assert.h
 arrayUtilTestRunner.c
-arrayUtilTestRunner.exe.core
+*.exe.core

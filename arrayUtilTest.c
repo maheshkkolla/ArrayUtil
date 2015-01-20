@@ -105,3 +105,21 @@ void test_findIndex_returns_index_of_the_int_element_where_it_presents(){
 	index = findIndex(a, &element);
 	assertEqual(index, 4);
 }
+
+int isEven(void *hint, void *item) {
+	int *number = (int *)item;
+	return(*number%2==0);
+}
+
+void test_findFirst_element_of_the_array_whixh_is_even(){
+	ArrayUtil a = create(sizeof(int), 5);
+	int *result;
+	int *aBase = (int *)(a.base);
+	aBase[0] = 1;
+	aBase[1] = 3;
+	aBase[2] = 5;
+	aBase[3] = 4;
+	aBase[4] = 7;
+	result = (int *)findFirst(a, &isEven, 0);
+	assertEqual(*result, 4);
+}
