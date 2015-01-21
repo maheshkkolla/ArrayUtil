@@ -138,3 +138,18 @@ void test_findLast_element_of_the_array_which_is_even(){
 	result = (int *)findLast(a,&isEven,0);
 	assertEqual(*result, 6);
 }
+
+void test_count_the_elements_of_the_array_which_is_even(){
+	ArrayUtil a = create(sizeof(int),7);
+	int result;
+	int *aBase = (int *)(a.base);
+	aBase[0] = 1;
+	aBase[1] = 2;
+	aBase[2] = 3;
+	aBase[3] = 4;
+	aBase[4] = 5;
+	aBase[5] = 6;
+	aBase[6] = 7;
+	result = count(a,&isEven,0);
+	assertEqual(result, 3);
+}
