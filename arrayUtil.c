@@ -16,11 +16,7 @@ int areEqual(ArrayUtil a, ArrayUtil b) {
 }
 
 ArrayUtil create(int typeSize, int length) {
-	ArrayUtil array;
-	array.base = calloc(length, typeSize);
-	array.typeSize = typeSize;
-	array.length = length;
-	return array;
+	return (ArrayUtil){calloc(length, typeSize),typeSize,length};
 }
 
 ArrayUtil resize(ArrayUtil util, int length) {
