@@ -63,6 +63,16 @@ void *findFirst(ArrayUtil util, MatchFunc *match, void *hint) {
 	return NULL;
 }
 
+void *findLast(ArrayUtil util, MatchFunc *match, void *hint) {
+	char *array = (char *)util.base;
+	char *result = NULL;
+	int i, count = util.length * util.typeSize;
+	for (i = 0; i < count; i=i+util.typeSize) {
+		if(match(hint,array+i)) result = array+i;
+	}
+	return result;
+}
+
 
 
 
