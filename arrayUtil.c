@@ -6,28 +6,35 @@
 
 int areEqual(ArrayUtil a, ArrayUtil b) {
 	int i;
-	if(a.length == b.length && a.typeSize == b.typeSize) {
-		for (i = 0; i < a.length; ++i) {
-			if(((int *)a.base)[i] != ((int *)b.base)[i]) return 0;
-		}
-		return 1;
+	if(a.length != b.length || a.typeSize != b.typeSize) return 0;
+	for (i = 0; i < a.length * a.typeSize; ++i) {
+		if(((char *)a.base)[i] != ((char *)b.base)[i]) return 0;
 	}
-	return 0;
+	return 1;	
 }
+
+// int areEqual(ArrayUtil a, ArrayUtil b) {
+// 	int i, j;
+// 	if(a.length != b.length || a.typeSize != b.typeSize) return 0;
+// 	for (i = 0; i < a.length; ++i) {
+// 		for (j = 0; i < sizeof(a.base[i]); ++i) {
+// 			// if(((char *)(a.base[i]))[0] != ((char *)(b.base[i]))[0]) return 0;			
+// 		}
+// 	}
+// 	return 1;
+// }
 
 ArrayUtil create(int typeSize, int length) {
 	return (ArrayUtil){calloc(length, typeSize),typeSize,length};
 }
 
 ArrayUtil resize(ArrayUtil util, int length) {
-	int i;
-	ArrayUtil array;
-	array = create(util.typeSize, length);
-	for (i = 0; i < length; ++i){
-		if(i < util.length) ((int *)(array.base))[i] = ((int *)(util.base))[i];
-		else ((int *)(array.base))[i] = 0;
+	int i, count = (length<=util.length) ? (length*util.typeSize) : (util.length*util.typeSize);
+	ArrayUtil newUtil = create(util.typeSize, length);
+	for (i = 0; i < count; ++i) {
+		((char *)(newUtil.base))[i] = ((char *)(util.base))[i];
 	} 
-	return array;
+	return newUtil;
 }
 
 int findIndex(ArrayUtil util, void *element){

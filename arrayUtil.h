@@ -4,6 +4,7 @@ typedef struct arrayUtil {
 	int length;
 } ArrayUtil;
 
+typedef char*  String;
 typedef int MatchFunc(void* hint, void* item);
 int areEqual(ArrayUtil a, ArrayUtil b);
 ArrayUtil create(int typeSize, int length);
